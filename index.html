@@ -1,0 +1,549 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="業務を整え、事業を支えるオンライン秘書">
+  <title>横井みく｜業務を整え、事業を支えるオンライン秘書</title>
+  <style>
+    :root {
+      --ink: #24322d;
+      --muted: #66736e;
+      --green: #507565;
+      --green-dark: #355648;
+      --sage: #e7efe9;
+      --sage-light: #f2f6f3;
+      --cream: #fbf8f1;
+      --white: #fff;
+      --line: rgba(53, 86, 72, .15);
+      --shadow: 0 20px 60px rgba(45, 70, 58, .11);
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--cream);
+      font-family: "Hiragino Kaku Gothic ProN", "Yu Gothic", Meiryo, sans-serif;
+      line-height: 1.8;
+      letter-spacing: .02em;
+    }
+    a { color: inherit; }
+    .wrap { width: min(1080px, calc(100% - 40px)); margin-inline: auto; }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      border-bottom: 1px solid var(--line);
+      background: rgba(251, 248, 241, .9);
+      backdrop-filter: blur(12px);
+    }
+    nav { min-height: 66px; display: flex; align-items: center; justify-content: space-between; gap: 20px; }
+    .logo { font-weight: 800; text-decoration: none; color: var(--green-dark); }
+    .nav-items { display: flex; align-items: center; gap: 22px; }
+    .nav-link { font-size: .88rem; font-weight: 700; text-decoration: none; color: var(--muted); }
+    .nav-link:hover { color: var(--green-dark); }
+
+    .hero { padding: 92px 0 80px; overflow: hidden; }
+    .hero-grid { display: grid; grid-template-columns: 1.2fr .8fr; align-items: center; gap: 70px; }
+    .eyebrow { margin: 0 0 18px; color: var(--green); font-size: .84rem; font-weight: 800; letter-spacing: .16em; }
+    h1 { margin: 0; font-size: clamp(2.35rem, 5.4vw, 4.55rem); line-height: 1.22; letter-spacing: -.035em; }
+    h1 span { color: var(--green); }
+    .lead { max-width: 650px; margin: 28px 0 18px; color: var(--muted); font-size: 1.04rem; }
+    .hero-note { margin: 0 0 32px; color: var(--green-dark); font-weight: 800; }
+    .actions { display: flex; flex-wrap: wrap; gap: 12px; }
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 52px;
+      padding: 0 24px;
+      border: 1px solid var(--green-dark);
+      border-radius: 999px;
+      background: var(--green-dark);
+      color: white;
+      font-weight: 800;
+      text-decoration: none;
+      transition: transform .2s ease, box-shadow .2s ease;
+    }
+    .button:hover { transform: translateY(-2px); box-shadow: 0 10px 24px rgba(53, 86, 72, .2); }
+    .button.secondary { background: transparent; color: var(--green-dark); }
+
+    .portrait {
+      position: relative;
+      aspect-ratio: 1;
+      border-radius: 48% 52% 44% 56% / 52% 42% 58% 48%;
+      background: #dce9df;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+    .portrait img { width: 100%; height: 100%; display: block; object-fit: cover; object-position: 52% 38%; }
+    .portrait::before, .portrait::after { content: ""; position: absolute; border-radius: 50%; background: rgba(255,255,255,.55); }
+    .portrait::before { width: 22%; aspect-ratio: 1; left: -7%; top: 17%; }
+    .portrait::after { width: 12%; aspect-ratio: 1; right: 3%; bottom: -3%; }
+
+    section { padding: 86px 0; }
+    .soft { background: var(--sage); }
+    .white { background: var(--white); }
+    .section-head { max-width: 720px; margin-bottom: 40px; }
+    .section-head.center { margin-inline: auto; text-align: center; }
+    .section-head h2 { margin: 0 0 14px; font-size: clamp(1.8rem, 4vw, 2.8rem); line-height: 1.4; }
+    .section-head p { margin: 0; color: var(--muted); }
+
+    .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .cards.two { grid-template-columns: repeat(2, 1fr); }
+    .card { padding: 30px; border: 1px solid var(--line); border-radius: 24px; background: rgba(255,255,255,.76); }
+    .card.solid { background: var(--white); }
+    .number { display: inline-grid; place-items: center; width: 42px; height: 42px; margin-bottom: 20px; border-radius: 50%; background: var(--green-dark); color: white; font-weight: 800; }
+    .card h3 { margin: 0 0 10px; font-size: 1.12rem; }
+    .card p { margin: 0; color: var(--muted); font-size: .95rem; }
+    .card ul { margin: 14px 0 0; padding-left: 1.2em; color: var(--muted); font-size: .93rem; }
+    .card li + li { margin-top: 5px; }
+
+    .troubles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .trouble { display: flex; gap: 14px; align-items: flex-start; padding: 24px; border-radius: 20px; background: var(--white); box-shadow: 0 10px 30px rgba(45,70,58,.06); }
+    .check { flex: 0 0 auto; display: grid; place-items: center; width: 28px; height: 28px; border-radius: 50%; background: var(--sage); color: var(--green-dark); font-weight: 900; }
+    .trouble p { margin: 0; font-weight: 700; line-height: 1.65; }
+    .solution { margin-top: 28px; padding: 28px 30px; border-left: 4px solid var(--green); border-radius: 0 20px 20px 0; background: var(--sage-light); }
+    .solution strong { display: block; margin-bottom: 7px; color: var(--green-dark); font-size: 1.08rem; }
+    .solution p { margin: 0; color: var(--muted); }
+    .after-intro { margin: 46px 0 22px; text-align: center; }
+    .after-intro h3 { margin: 0 0 10px; font-size: clamp(1.45rem, 3vw, 2rem); line-height: 1.45; }
+    .after-intro p { max-width: 680px; margin: 0 auto; color: var(--muted); }
+    .after-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+    .after-card { position: relative; padding: 26px 24px; border: 1px solid var(--line); border-radius: 22px; background: var(--white); box-shadow: 0 10px 30px rgba(45,70,58,.06); }
+    .state-label { display: inline-flex; align-items: center; margin-bottom: 10px; padding: 4px 10px; border-radius: 999px; font-size: .7rem; font-weight: 800; letter-spacing: .08em; }
+    .state-label.before { background: #f3eee6; color: #8a6d4d; }
+    .state-label.after { background: var(--green-dark); color: white; }
+    .state-box { min-height: 118px; }
+    .state-box h4 { margin: 0 0 8px; font-size: 1.04rem; line-height: 1.55; }
+    .state-box.before h4 { color: #7b634a; }
+    .state-box.after h4 { color: var(--green-dark); }
+    .state-box p { margin: 0; color: var(--muted); font-size: .92rem; }
+    .state-arrow {
+      display: grid;
+      place-items: center;
+      width: 38px;
+      height: 38px;
+      margin: 16px auto 18px;
+      border-radius: 50%;
+      background: var(--sage);
+      color: var(--green-dark);
+      font-size: 1.35rem;
+      font-weight: 900;
+      line-height: 1;
+    }
+    .after-note { margin-top: 18px; padding: 22px 24px; border-radius: 20px; background: rgba(255,255,255,.64); color: var(--green-dark); font-weight: 800; text-align: center; }
+
+    .case-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .case { padding: 30px; border: 1px solid var(--line); border-radius: 24px; background: var(--white); }
+    .case-label { display: inline-block; margin-bottom: 14px; padding: 5px 11px; border-radius: 999px; background: var(--sage); color: var(--green-dark); font-size: .76rem; font-weight: 800; }
+    .case h3 { margin: 0 0 12px; font-size: 1.15rem; }
+    .case ul { margin: 0; padding-left: 1.2em; color: var(--muted); font-size: .92rem; }
+    .case li + li { margin-top: 5px; }
+
+    .work-list { display: grid; gap: 28px; }
+    .work-card { display: grid; grid-template-columns: 1.05fr .95fr; gap: 44px; align-items: center; padding: 42px; border: 1px solid var(--line); border-radius: 30px; background: var(--white); box-shadow: var(--shadow); }
+    .work-visual { min-height: 310px; display: grid; place-items: center; padding: 30px; border-radius: 24px; background: linear-gradient(145deg, #dce9df, #f7f4e9); text-align: center; }
+    .work-visual.image { padding: 0; overflow: hidden; background: #fff; border: 1px solid var(--line); }
+    .work-visual.image img { width: 100%; height: 100%; min-height: 310px; display: block; object-fit: cover; object-position: left top; }
+    .work-visual .mark { font-family: Georgia, serif; font-size: clamp(3rem, 7vw, 5.6rem); color: var(--green-dark); line-height: 1; }
+    .work-visual small { display: block; margin-top: 14px; color: var(--green); font-weight: 800; letter-spacing: .12em; }
+    .work-copy h3 { margin: 0 0 14px; font-size: clamp(1.5rem, 3vw, 2.15rem); }
+    .work-copy p { margin: 0 0 18px; color: var(--muted); }
+    .work-copy ul { margin: 0 0 25px; padding-left: 1.2em; color: var(--muted); }
+    .work-copy li + li { margin-top: 5px; }
+    .small-note { margin-top: 17px !important; font-size: .82rem; }
+    .sheet-preview { width: 100%; overflow: hidden; border: 1px solid var(--line); border-radius: 16px; background: white; box-shadow: 0 12px 30px rgba(45,70,58,.08); text-align: left; }
+    .sheet-bar { padding: 14px 17px; background: var(--green-dark); color: white; font-weight: 800; }
+    .sheet-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; padding: 14px; background: var(--sage-light); }
+    .sheet-stat { padding: 10px 7px; border-radius: 9px; background: white; color: var(--muted); font-size: .7rem; text-align: center; }
+    .sheet-stat strong { display: block; color: var(--green-dark); font-size: 1.15rem; }
+    .sheet-row { display: grid; grid-template-columns: 1.4fr .75fr .65fr; gap: 8px; padding: 10px 14px; border-top: 1px solid var(--line); color: var(--muted); font-size: .68rem; }
+    .sheet-row.head { color: var(--green-dark); font-weight: 800; background: #fafcfb; }
+
+    .voices { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .voice-intro { max-width: 760px; }
+    .voice { padding: 28px; border-radius: 22px; background: var(--white); border: 1px solid var(--line); }
+    .voice p { margin: 0 0 16px; color: var(--green-dark); font-weight: 800; }
+    .voice small { color: var(--muted); }
+
+    .about { display: grid; grid-template-columns: .75fr 1.25fr; gap: 70px; align-items: start; }
+    .about h2 { margin: 0; font-size: clamp(1.9rem, 4vw, 3rem); line-height: 1.4; }
+    .about-text p { margin: 0 0 20px; color: var(--muted); }
+    .career { margin-top: 28px; display: grid; gap: 10px; }
+    .career-item { padding: 14px 18px; border-left: 3px solid var(--green); background: var(--sage-light); color: var(--muted); font-size: .92rem; }
+
+    .meta-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+    .meta-box { padding: 30px; border: 1px solid var(--line); border-radius: 24px; background: rgba(255,255,255,.76); }
+    .meta-box h3 { margin: 0 0 14px; }
+    .meta-box ul { margin: 0; padding-left: 1.2em; color: var(--muted); }
+
+    .contact { text-align: center; }
+    .contact-box { padding: 62px 30px; border-radius: 30px; background: var(--green-dark); color: white; box-shadow: var(--shadow); }
+    .contact-box h2 { margin: 0 0 16px; font-size: clamp(1.8rem, 4vw, 2.7rem); }
+    .contact-box p { max-width: 650px; margin: 0 auto 28px; color: rgba(255,255,255,.8); }
+    .contact-actions { display: flex; flex-wrap: wrap; gap: 12px; justify-content: center; }
+    .contact-box .button { border-color: white; background: white; color: var(--green-dark); }
+    .contact-box .button.secondary { background: transparent; color: white; border-color: rgba(255,255,255,.72); }
+
+    footer { padding: 34px 0; color: var(--muted); font-size: .82rem; text-align: center; }
+
+    @media (max-width: 900px) {
+      .nav-items .nav-link:not(:last-child) { display: none; }
+      .cards, .case-grid, .voices, .troubles, .after-grid { grid-template-columns: 1fr; }
+      .cards.two { grid-template-columns: 1fr 1fr; }
+      .work-card { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 760px) {
+      .pc-only { display: none; }
+      .hero { padding-top: 60px; }
+      .hero-grid, .about, .meta-grid { grid-template-columns: 1fr; gap: 42px; }
+      .portrait { width: min(390px, 90%); margin: auto; }
+      .cards.two { grid-template-columns: 1fr; }
+      section { padding: 66px 0; }
+      .work-card { padding: 24px; }
+      .work-visual { min-height: 230px; }
+      .contact-box { padding: 48px 22px; }
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="wrap" aria-label="メインナビゲーション">
+      <a class="logo" href="#top">miku support</a>
+      <div class="nav-items">
+        <a class="nav-link" href="#strengths">選ばれる理由</a>
+        <a class="nav-link" href="#works">制作事例</a>
+        <a class="nav-link" href="#contact">ご相談はこちら →</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div>
+          <p class="eyebrow">ONLINE SECRETARY &amp; BUSINESS SUPPORT</p>
+          <h1>業務を整え、<br><span>事業を支える</span><br>オンライン秘書。</h1>
+          <p class="lead">個人事業主・中小企業の方を対象に、バックオフィス業務や運営を<br>サポートしています。依頼された作業を代行するだけでなく、散らばった情報やタスクを整理し、業務がスムーズに回る仕組みづくりまで対応します。</p>
+          <p class="hero-note">任せて終わりではなく、一緒に整理し、より進めやすい形へ。</p>
+          <div class="actions">
+            <a class="button" href="#contact">相談する</a>
+            <a class="button secondary" href="#service">できること</a>
+          </div>
+        </div>
+        <div class="portrait">
+          <img src="assets/profile.jpg" alt="パソコンで作業する横井みく">
+        </div>
+      </div>
+    </section>
+
+    <section class="soft" id="service">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="eyebrow">DOES THIS SOUND FAMILIAR?</p>
+          <h2>このようなお悩みは<br>ありませんか？</h2>
+          <p>目の前の仕事は回っている。でも、確認・連絡・入力・管理に追われて、本当に進めたいことが<br>後回しになってしまう。そんな状態を、業務の整理と実務サポートで軽くしていきます。</p>
+        </div>
+        <div class="troubles">
+          <div class="trouble"><span class="check">✓</span><p>日々の業務に追われ、本来取り組みたい仕事が後回しになっている</p></div>
+          <div class="trouble"><span class="check">✓</span><p>タスクや情報が散らばり、抜け漏れや確認の手間が増えている</p></div>
+          <div class="trouble"><span class="check">✓</span><p>業務を任せたいけれど、何から切り出せばよいか分からない</p></div>
+        </div>
+<br><br>
+        <div class="after-intro">
+          <p class="eyebrow">AFTER SUPPORT</p>
+          <h3>ご依頼後は、こんな状態を目指します。</h3>
+          <p>単に作業を代行するだけでなく、「誰が・いつ・何をするか」が見える状態に整え、<br>安心して本業に集中できる時間を増やします。</p>
+        </div>
+
+        <div class="after-grid">
+          <article class="after-card">
+            <div class="state-box before">
+              <span class="state-label before">BEFORE</span>
+              <h4>頭の中だけでタスクを抱えている</h4>
+              <p>やること・確認すること・依頼したことが散らばり、いつも何かを気にしている状態。</p>
+            </div>
+            <div class="state-arrow">↓</div>
+            <div class="state-box after">
+              <span class="state-label after">AFTER</span>
+              <h4>次にやることが見える形に整理される</h4>
+              <p>管理表・チェックリスト・進行フローに落とし込み、抜け漏れの不安を減らします。</p>
+            </div>
+          </article>
+          <article class="after-card">
+            <div class="state-box before">
+              <span class="state-label before">BEFORE</span>
+              <h4>細かな確認・入力・連絡に時間を取られる</h4>
+              <p>日程調整、リマインド、請求・勤怠まわりの確認などで、本来の仕事が後回しに。</p>
+            </div>
+            <div class="state-arrow">↓</div>
+            <div class="state-box after">
+              <span class="state-label after">AFTER</span>
+              <h4>任せられる業務が増え、本業に戻れる</h4>
+              <p>日々の細かな実務を切り出し、作業に追われる時間を減らしていきます。</p>
+            </div>
+          </article>
+          <article class="after-card">
+            <div class="state-box before">
+              <span class="state-label before">BEFORE</span>
+              <h4>毎回ゼロから説明・対応している</h4>
+              <p>やり方が人や記憶に頼っていて、誰かに任せるたびに説明や確認が発生する。</p>
+            </div>
+            <div class="state-arrow">↓</div>
+            <div class="state-box after">
+              <span class="state-label after">AFTER</span>
+              <h4>人に任せても回る仕組みが残る</h4>
+              <p>マニュアル化・テンプレート化・ツール活用まで整え、続けやすい運用にします。</p>
+            </div>
+          </article>
+        </div>
+
+        <div class="after-note">
+          まずは「何を任せられるか分からない」という段階でも大丈夫です。現状を一緒にほどきながら、手放せる業務を見つけていきます。
+        </div>
+      </div>
+    </section>
+
+    <section id="strengths">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="eyebrow">WHY WORK WITH ME</p>
+          <h2>選ばれる理由</h2>
+        </div>
+        <div class="cards">
+          <article class="card solid">
+            <span class="number">01</span>
+            <h3>業務を整理し、進め方まで考えます</h3>
+            <p>依頼された作業だけでなく、目的や現状を確認し、より進めやすい方法をご提案します。</p>
+          </article>
+          <article class="card solid">
+            <span class="number">02</span>
+            <h3>バックオフィス実務10年以上</h3>
+            <p>総務・労務・経理、ひとり事務、社労士事務所での経験を活かし、正確性が求められる業務にも対応します。</p>
+          </article>
+          <article class="card solid">
+            <span class="number">03</span>
+            <h3>丁寧かつスピーディーに対応</h3>
+            <p>早めの返信と先回りした確認を心がけ、「安心して任せられる」と評価をいただいています。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="white" id="results">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="eyebrow">SUPPORT EXPERIENCE</p>
+          <h2>サポート実績</h2>
+          <p>個人事業主様・中小企業様を中心に、バックオフィス業務から運営サポートまで<br>継続して担当しています。</p>
+        </div>
+        <div class="case-grid">
+          <article class="case">
+            <span class="case-label">運営支援</span>
+            <h3>スクール・コミュニティ運営</h3>
+            <ul>
+              <li>イベント・YouTubeライブの準備、<br>進行管理</li>
+              <li>申込フォーム、告知画像、案内文作成</li>
+              <li>Webサイト・SNSの更新</li>
+              <li>企画の壁打ち、タスク整理、改善提案</li>
+            </ul>
+          </article>
+          <article class="case">
+            <span class="case-label">バックオフィス</span>
+            <h3>企業の事務・管理業務</h3>
+            <ul>
+              <li>勤怠データの確認・整理</li>
+              <li>給与計算サポート</li>
+              <li>請求書発行、入出金確認</li>
+              <li>売上・経費データ、社内資料の整理</li>
+            </ul>
+          </article>
+          <article class="case">
+            <span class="case-label">情報発信</span>
+            <h3>コンテンツ制作支援</h3>
+            <ul>
+              <li>Instagram投稿・告知物の作成</li>
+              <li>YouTube・ショート動画の制作補助</li>
+              <li>動画編集</li>
+              <li>投稿データの記録・整理</li>
+            </ul>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="soft" id="works">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="eyebrow">PORTFOLIO SAMPLE</p>
+          <h2>制作サンプル</h2>
+          <p>実務経験をもとに、業務整理・運営管理を想定したサンプルを制作しています。</p>
+        </div>
+        <div class="work-list">
+          <article class="work-card">
+            <div class="work-visual image">
+              <img src="assets/bloom-base.png" alt="Bloom Base運営ワークスペースの画面">
+            </div>
+            <div class="work-copy">
+              <p class="eyebrow">NOTION / OPERATION DESIGN</p>
+              <h3>Bloom Base｜コミュニティ運営ワークスペース</h3>
+              <p>月例勉強会や交流イベントを継続的に運営する想定で、Notionを使った管理システムを制作しました。</p>
+              <ul>
+                <li>イベントごとの準備・進捗管理</li>
+                <li>繰り返し使えるイベントテンプレート</li>
+                <li>運営マニュアルの一元管理</li>
+                <li>担当者・期限・関連資料の整理</li>
+                <li>引き継ぎやすさを考慮した設計</li>
+              </ul>
+              <a class="button" href="https://app.notion.com/p/Bloom-Base-39be7bce56328133858ad8133c87706d" target="_blank" rel="noopener noreferrer">サンプルを見る</a>
+              <p class="small-note">※架空のコミュニティを想定した自主制作です。</p>
+            </div>
+          </article>
+
+          <article class="work-card">
+            <div class="work-visual">
+              <div class="sheet-preview" aria-label="Bloom Base運営管理表のイメージ">
+                <div class="sheet-bar">Bloom Base｜朝のダッシュボード</div>
+                <div class="sheet-stats">
+                  <div class="sheet-stat">今日着手<strong>12</strong></div>
+                  <div class="sheet-stat">期限超過<strong>15</strong></div>
+                  <div class="sheet-stat">確認待ち<strong>3</strong></div>
+                </div>
+                <div class="sheet-row head"><span>タスク</span><span>担当</span><span>状態</span></div>
+                <div class="sheet-row"><span>前日リマインドを投稿</span><span>運営担当</span><span>未着手</span></div>
+                <div class="sheet-row"><span>参加者リストを確認</span><span>運営担当</span><span>進行中</span></div>
+                <div class="sheet-row"><span>アンケートを集計</span><span>運営管理</span><span>確認待ち</span></div>
+              </div>
+            </div>
+            <div class="work-copy">
+              <p class="eyebrow">GOOGLE SHEETS / TASK MANAGEMENT</p>
+              <h3>Bloom Base｜運営管理表</h3>
+              <p>担当者が変わっても迷わず動ける状態を目指し、毎月繰り返す運営業務を管理できるスプレッドシートを制作しました。</p>
+              <ul>
+                <li>毎月コピーして使える原本シート</li>
+                <li>開始予定日・期限・優先度・進捗の管理</li>
+                <li>資料リンクを一元管理するマスタ</li>
+                <li>今日の着手・期限超過を確認できるダッシュボード</li>
+                <li>新人向けオンボーディングと運用ルール</li>
+              </ul>
+              <a class="button" href="https://docs.google.com/spreadsheets/d/12DFkEiid3wITBHiY_RUmT6Xzt5CnnpSMqpLCHlL81tw/edit?usp=sharing" target="_blank" rel="noopener noreferrer">サンプルを見る</a>
+              <p class="small-note">※架空のコミュニティを想定した自主制作です。</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="services">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="eyebrow">SERVICES</p>
+          <h2>対応可能な業務</h2>
+        </div>
+        <div class="cards two">
+          <article class="card solid">
+            <h3>業務整理・進行管理</h3>
+            <ul><li>タスク・スケジュール管理</li><li>業務フローの整理</li><li>管理表・マニュアル作成</li><li>情報整理・改善提案</li></ul>
+          </article>
+          <article class="card solid">
+            <h3>バックオフィス支援</h3>
+            <ul><li>経理・労務関連のデータ整理</li><li>勤怠確認・給与計算補助</li><li>請求書作成・入出金確認</li><li>資料・文書・議事録作成</li></ul>
+          </article>
+          <article class="card solid">
+            <h3>運営サポート</h3>
+            <ul><li>講座・イベントの準備、進行管理</li><li>申込フォーム・案内文の作成</li><li>スケジュール調整・リマインド</li><li>顧客対応の一次返信</li></ul>
+          </article>
+          <article class="card solid">
+            <h3>AI・ツール活用</h3>
+            <ul><li>AIを活用した文章・資料作成</li><li>Notion・スプレッドシート整備</li><li>定型業務のテンプレート化</li><li>業務効率化のサポート（GASなど）</li></ul>
+          </article>
+        </div>
+        <div class="solution"><p>上記以外も、現在の業務やお困りごとを伺ったうえで、対応方法をご提案します。</p></div>
+      </div>
+    </section>
+
+    <section class="soft" id="voices">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="eyebrow">CLIENT VOICES</p>
+          <h2>お客様の声</h2>
+          <p class="voice-intro">継続してご依頼いただいているお客様から、対応の速さや丁寧さ、<br class="pc-only">先回りしたサポートについて評価をいただいています。</p>
+        </div>
+        <div class="voices">
+          <article class="voice"><p>「返信や対応が早く、安心して任せられる」</p><small>スクール運営者</small></article>
+          <article class="voice"><p>「細かな部分まで気づき、先回りして対応してくれる」</p><small>個人事業主</small></article>
+          <article class="voice"><p>「相談しながら一緒に進められるので心強い」</p><small>企業ご担当者</small></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="about">
+      <div class="wrap about">
+        <div>
+          <p class="eyebrow">PROFILE</p>
+          <h2>表に立つ人が、<br>力を発揮できるように。</h2>
+        </div>
+        <div class="about-text">
+          <p>愛知県在住。2児の母。表に立つ人が力を発揮できるよう、業務や環境を整えるサポートが得意です。</p>
+          <p>製造業や社労士事務所などで、総務・労務・経理を中心に10年以上バックオフィス業務を経験。約250名分の勤怠管理・給与計算や、ひとり事務として経理・総務・営業事務を幅広く担当してきました。</p>
+          <p>現在はオンライン秘書として、個人事業主・中小企業のバックオフィス支援、進行管理、運営サポート、業務改善に携わっています。</p>
+          <div class="career">
+            <div class="career-item"><strong>製造業：</strong>総務・労務業務、約250名分の勤怠管理・給与計算</div>
+            <div class="career-item"><strong>社会保険労務士事務所：</strong>顧問先の給与計算・社会保険手続き<br>※現在は有資格者の独占業務は対応できません</div>
+            <div class="career-item"><strong>印刷会社：</strong>経理を中心に総務・労務・営業事務を担当</div>
+            <div class="career-item"><strong>現在：</strong>オンラインでのバックオフィス・運営支援</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="white" id="tools">
+      <div class="wrap meta-grid">
+        <article class="meta-box">
+          <p class="eyebrow">TOOLS</p>
+          <h3>使用ツール</h3>
+          <ul>
+            <li>Microsoft Word・Excel・PowerPoint</li>
+            <li>Googleドキュメント・スプレッドシート・フォーム</li>
+            <li>Notion・Canva・CapCut</li>
+            <li>Chatwork・Slack・Zoom</li>
+            <li>ChatGPT・Codex・Cursor など</li>
+          </ul>
+        </article>
+        <article class="meta-box">
+          <p class="eyebrow">AVAILABILITY</p>
+          <h3>稼働・ご連絡について</h3>
+          <ul>
+            <li>稼働日：平日</li>
+            <li>稼働時間：週20時間程度</li>
+            <li>主な稼働時間：9:00〜17:00</li>
+            <li>ご連絡：原則、平日中に確認・返信</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <!-- 公開後、下の GOOGLE_FORM_URL_HERE を実際のGoogleフォームURLに差し替えてください -->
+    <section class="contact" id="contact">
+      <div class="wrap">
+        <div class="contact-box">
+          <h2>まずは、お気軽にご相談ください。</h2>
+          <p>ポートフォリオをご覧いただきありがとうございます。「何を任せられるか、まだ整理できていない」という段階でも大丈夫です。Googleフォームから現在のお困りごとをお送りください。必要なサポート内容を一緒に整理いたします。</p>
+          <div class="contact-actions">
+            <a class="button" href="https://forms.gle/qGtS92byJofqRH3Q6" target="_blank" rel="noopener noreferrer">Googleフォームで相談する</a>
+
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">© 2026 miku support</div>
+  </footer>
+</body>
+</html>
